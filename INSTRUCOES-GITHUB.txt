@@ -1,0 +1,24 @@
+PUBLICAÇÃO MANUAL — SITE PROFª CRIS
+
+1. Abra: https://github.com/TonelliAngelo/ProfCris
+2. Entre na aba Code.
+3. Clique em Add file > Upload files.
+4. Extraia este arquivo ZIP no computador.
+5. Envie o arquivo index.html e a pasta assets para a raiz do repositório.
+6. Clique em Commit changes.
+
+ATIVAR O GITHUB PAGES
+
+1. No repositório, abra Settings.
+2. No menu lateral, clique em Pages.
+3. Em Build and deployment, selecione Deploy from a branch.
+4. Em Branch, escolha main e a pasta / (root).
+5. Clique em Save.
+
+Após alguns minutos, o endereço esperado será:
+https://tonelliangelo.github.io/ProfCris/
+
+IMPORTANTE
+
+- O arquivo index.html e a pasta assets devem permanecer na raiz do repositório.
+- Não altere o nome da pasta assets nem do arquivo logo-profa-cris.png.
