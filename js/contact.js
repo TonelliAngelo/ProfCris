@@ -1,4 +1,4 @@
-(() => {
+const initializeContactForm = () => {
   const form = document.querySelector("#contact-form");
   const status = document.querySelector("#form-status");
   const button = form?.querySelector(".submit-button");
@@ -59,4 +59,10 @@
       label.textContent = "Enviar por e-mail e WhatsApp";
     }
   });
-})();
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeContactForm, { once: true });
+} else {
+  initializeContactForm();
+}
