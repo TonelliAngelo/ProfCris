@@ -4,8 +4,9 @@ PUBLICAÇÃO MANUAL — SITE PROFª CRIS
 2. Entre na aba Code.
 3. Clique em Add file > Upload files.
 4. Extraia este arquivo ZIP no computador.
-5. Envie o arquivo index.html e a pasta assets para a raiz do repositório.
-6. Clique em Commit changes.
+5. Envie todos os arquivos e pastas extraídos para a raiz do repositório, mantendo a estrutura original.
+6. Se o GitHub perguntar sobre arquivos existentes, confirme a substituição.
+7. Clique em Commit changes.
 
 ATIVAR O GITHUB PAGES
 
@@ -20,5 +21,6 @@ https://tonelliangelo.github.io/ProfCris/
 
 IMPORTANTE
 
-- O arquivo index.html e a pasta assets devem permanecer na raiz do repositório.
-- Não altere o nome da pasta assets nem do arquivo logo-profa-cris.png.
+- O arquivo index.html e as pastas assets, css e js devem permanecer na raiz do repositório.
+- Não altere os nomes das pastas nem dos arquivos de imagem.
+- Preserve o arquivo CNAME para manter o domínio www.profacris.com.br.
