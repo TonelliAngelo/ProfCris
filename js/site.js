@@ -29,8 +29,9 @@ const initializeSite = () => {
   }
 
   const recordEvent = (eventName, details = {}) => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: eventName, ...details });
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, details);
+    }
     window.dispatchEvent(new CustomEvent("profacris:interaction", {
       detail: { event: eventName, ...details },
     }));
@@ -53,6 +54,10 @@ const initializeSite = () => {
 
   document.querySelector("#contact-form")?.addEventListener("submit", () => {
     recordEvent("contact_form_submit");
+  });
+
+  window.addEventListener("profacris:contact-sent", () => {
+    recordEvent("generate_lead", { method: "contact_form" });
   });
 };
 

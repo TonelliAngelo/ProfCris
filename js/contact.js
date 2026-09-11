@@ -52,6 +52,7 @@ const initializeContactForm = () => {
       if (!response.ok) throw new Error("Falha no envio");
 
       setStatus("E-mail enviado. Abrindo o WhatsApp para confirmar a mensagem...", "success");
+      window.dispatchEvent(new CustomEvent("profacris:contact-sent"));
       window.setTimeout(() => window.location.assign(whatsappUrl), 650);
     } catch {
       setStatus("Não foi possível enviar o e-mail agora. Tente novamente ou use o botão do WhatsApp.", "error");
