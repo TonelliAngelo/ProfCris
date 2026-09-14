@@ -29,8 +29,8 @@ const initializeSite = () => {
   }
 
   const recordEvent = (eventName, details = {}) => {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", eventName, details);
+    if (typeof window.profacrisTrack === "function") {
+      window.profacrisTrack(eventName, details);
     }
     window.dispatchEvent(new CustomEvent("profacris:interaction", {
       detail: { event: eventName, ...details },
