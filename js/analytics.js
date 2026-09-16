@@ -8,7 +8,6 @@ function gtag() {
 }
 
 window.gtag = gtag;
-window.profacrisAnalyticsAllowed = false;
 
 gtag("consent", "default", {
   ad_storage: "denied",
@@ -19,31 +18,6 @@ gtag("consent", "default", {
   security_storage: "granted",
   wait_for_update: 500,
 });
-
-const loadAnalytics = () => {
-  if (document.querySelector(`script[data-ga-id="${PROFACRIS_GA_ID}"]`)) return;
-
-  window.profacrisAnalyticsAllowed = true;
-  gtag("consent", "update", { analytics_storage: "granted" });
-  gtag("js", new Date());
-  gtag("config", PROFACRIS_GA_ID, { anonymize_ip: true });
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${PROFACRIS_GA_ID}`;
-  script.dataset.gaId = PROFACRIS_GA_ID;
-  document.head.append(script);
-};
-
-const disableAnalytics = () => {
-  window.profacrisAnalyticsAllowed = false;
-  gtag("consent", "update", { analytics_storage: "denied" });
-};
-
-window.profacrisTrack = (eventName, details = {}) => {
-  if (!window.profacrisAnalyticsAllowed) return;
-  gtag("event", eventName, details);
-};
 
 const readConsent = () => {
   try {
@@ -61,6 +35,47 @@ const saveConsent = (value) => {
   }
 };
 
+const updateAnalyticsConsent = (value) => {
+  const granted = value === "granted";
+
+  window.profacrisAnalyticsAllowed = granted;
+  window.profacrisAnalyticsConsent = value;
+  gtag("consent", "update", {
+    analytics_storage: granted ? "granted" : "denied",
+  });
+};
+
+const loadGoogleTag = () => {
+  if (document.querySelector(`script[data-ga-id="${PROFACRIS_GA_ID}"]`)) return;
+
+  gtag("js", new Date());
+  gtag("config", PROFACRIS_GA_ID, {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+  });
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${PROFACRIS_GA_ID}`;
+  script.dataset.gaId = PROFACRIS_GA_ID;
+  document.head.append(script);
+};
+
+const storedConsent = readConsent();
+window.profacrisAnalyticsAllowed = storedConsent === "granted";
+window.profacrisAnalyticsConsent = storedConsent || "unset";
+
+if (storedConsent) updateAnalyticsConsent(storedConsent);
+
+// Consent Mode avançado: a tag é carregada com armazenamento negado por padrão.
+// Sem aceite, o Google recebe apenas sinais sem cookies para modelagem agregada.
+loadGoogleTag();
+
+window.profacrisTrack = (eventName, details = {}) => {
+  gtag("event", eventName, details);
+};
+
 const buildConsentBanner = () => {
   const banner = document.createElement("section");
   banner.className = "privacy-banner";
@@ -76,7 +91,7 @@ const buildConsentBanner = () => {
   const acceptButton = document.createElement("button");
 
   title.textContent = "Sua privacidade importa";
-  text.textContent = "Usamos métricas opcionais para entender como o site é utilizado e melhorar a experiência. Você pode aceitar ou continuar somente com os recursos essenciais.";
+  text.textContent = "Usamos métricas opcionais para entender como o site é utilizado e melhorar a experiência. Sem o aceite, não usamos cookies de análise nem armazenamos identificadores no dispositivo; o Google poderá receber apenas sinais técnicos limitados.";
   essentialButton.type = "button";
   essentialButton.className = "privacy-button privacy-button-secondary";
   essentialButton.textContent = "Somente essenciais";
@@ -90,7 +105,7 @@ const buildConsentBanner = () => {
 
   const choose = (value) => {
     saveConsent(value);
-    value === "granted" ? loadAnalytics() : disableAnalytics();
+    updateAnalyticsConsent(value);
     banner.remove();
   };
 
@@ -103,8 +118,6 @@ const buildConsentBanner = () => {
 const initializePrivacyControls = () => {
   const consent = readConsent();
 
-  if (consent === "granted") loadAnalytics();
-  if (consent === "denied") disableAnalytics();
   if (!consent) document.body.append(buildConsentBanner());
 
   const footer = document.querySelector("footer .container");
