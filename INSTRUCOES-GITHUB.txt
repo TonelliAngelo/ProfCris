@@ -21,6 +21,7 @@ https://tonelliangelo.github.io/ProfCris/
 
 IMPORTANTE
 
-- O arquivo index.html e as pastas assets, css e js devem permanecer na raiz do repositório.
+- O arquivo index.html e as pastas assets, css, js, regioes, servicos e conteudos devem permanecer na raiz do repositório.
 - Não altere os nomes das pastas nem dos arquivos de imagem.
 - Preserve o arquivo CNAME para manter o domínio www.profacris.com.br.
+- Depois da publicação, confirme se a ação "pages build and deployment" ficou verde antes de testar o site.

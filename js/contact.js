@@ -25,12 +25,14 @@ const initializeContactForm = () => {
 
     const name = String(formData.get("Nome") || "").trim();
     const phone = String(formData.get("Telefone") || "").trim();
+    const grade = String(formData.get("Idade ou série") || "").trim();
     const message = String(formData.get("Mensagem") || "").trim();
     const whatsappText = [
       "Olá, Profª Cris! Enviei estes dados pelo site:",
       "",
       `Nome: ${name}`,
       `Telefone: ${phone}`,
+      `Idade ou série: ${grade}`,
       `Mensagem: ${message}`,
     ].join("\n");
     const whatsappUrl = `https://wa.me/5511950574561?text=${encodeURIComponent(whatsappText)}`;

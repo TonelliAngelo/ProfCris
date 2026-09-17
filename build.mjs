@@ -7,6 +7,8 @@ await cp("assets", "dist/assets", { recursive: true });
 await cp("css", "dist/css", { recursive: true });
 await cp("js", "dist/js", { recursive: true });
 await cp("regioes", "dist/regioes", { recursive: true });
+await cp("servicos", "dist/servicos", { recursive: true });
+await cp("conteudos", "dist/conteudos", { recursive: true });
 await cp("CNAME", "dist/CNAME");
 await cp("robots.txt", "dist/robots.txt");
 await cp("sitemap.xml", "dist/sitemap.xml");
