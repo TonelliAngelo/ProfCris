@@ -1,0 +1,12 @@
+/* Formação e relatos das famílias — outubro de 2026. */
+.formation-list{padding:20px;margin:24px 0;border:1px solid var(--line);border-radius:20px;background:var(--cream)}
+.formation-list h3{font-size:22px;color:var(--olive-dark);margin-bottom:12px}
+.formation-list ul{padding-left:20px;margin:0;color:var(--muted)}
+.formation-list li+li{margin-top:10px}
+.testimonial-full{margin-top:20px;border-top:1px solid var(--line);padding-top:14px}
+.testimonial-full summary{cursor:pointer;color:var(--olive-dark);font-weight:700}
+.testimonial-full p{color:var(--muted);font-size:15px;line-height:1.65;overflow-wrap:anywhere}
+.testimonial-navigation{display:none}
+@media(max-width:850px){.testimonials .testimonial-grid{display:flex;overflow-x:auto;scroll-snap-type:x proximity;gap:16px;padding:4px 4px 18px;align-items:flex-start}.testimonials .testimonial-card{flex:0 0 90%;min-width:0;scroll-snap-align:start}.testimonial-navigation{display:block;color:var(--muted);font-size:13px}.testimonials .testimonial-card blockquote{overflow-wrap:anywhere}}
+@media(prefers-reduced-motion:reduce){.testimonials .testimonial-grid{scroll-behavior:auto}}
+
