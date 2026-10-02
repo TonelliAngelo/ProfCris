@@ -10,3 +10,6 @@
 @media(max-width:850px){.testimonials .testimonial-grid{display:flex;overflow-x:auto;scroll-snap-type:x proximity;gap:16px;padding:4px 4px 18px;align-items:flex-start}.testimonials .testimonial-card{flex:0 0 90%;min-width:0;scroll-snap-align:start}.testimonial-navigation{display:block;color:var(--muted);font-size:13px}.testimonials .testimonial-card blockquote{overflow-wrap:anywhere}}
 @media(prefers-reduced-motion:reduce){.testimonials .testimonial-grid{scroll-behavior:auto}}
 
+
+.presentation-post{margin-top:24px;border:1px solid var(--line);border-radius:18px;background:var(--cream);padding:18px}.presentation-post summary{cursor:pointer;font-weight:700;color:var(--olive-dark)}.presentation-post figure{margin:18px 0 0}.presentation-post img{display:block;width:100%;height:auto;border-radius:14px}.presentation-post figcaption{font-size:13px;color:var(--muted);margin-top:10px}
+
